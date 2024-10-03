@@ -1,0 +1,60 @@
+(0.021) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.051) SELECT `contents_transcript`.`id`, `contents_transcript`.`transcript_text`, `contents_transcript`.`video_id`, `contents_transcript`.`created_at`, `contents_transcript`.`updated_at` FROM `contents_transcript` WHERE `contents_transcript`.`id` = 3 LIMIT 21; args=(3,); alias=default
+(0.012) SELECT `contents_video`.`id`, `contents_video`.`youtube_url`, `contents_video`.`video_id`, `contents_video`.`title`, `contents_video`.`channel_name`, `contents_video`.`original_language`, `contents_video`.`duration`, `contents_video`.`tags`, `contents_video`.`published_at`, `contents_video`.`created_at`, `contents_video`.`updated_at` FROM `contents_video` WHERE `contents_video`.`id` = 2 LIMIT 21; args=(2,); alias=default
+(0.005) SELECT `ai_agent_agentrole`.`id`, `ai_agent_agentrole`.`name`, `ai_agent_agentrole`.`description` FROM `ai_agent_agentrole` WHERE `ai_agent_agentrole`.`id` = 1 LIMIT 21; args=(1,); alias=default
+(0.010) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.006) SELECT `contents_transcript`.`id`, `contents_transcript`.`transcript_text`, `contents_transcript`.`video_id`, `contents_transcript`.`created_at`, `contents_transcript`.`updated_at` FROM `contents_transcript` WHERE `contents_transcript`.`id` = 3 LIMIT 21; args=(3,); alias=default
+(0.007) SELECT `contents_video`.`id`, `contents_video`.`youtube_url`, `contents_video`.`video_id`, `contents_video`.`title`, `contents_video`.`channel_name`, `contents_video`.`original_language`, `contents_video`.`duration`, `contents_video`.`tags`, `contents_video`.`published_at`, `contents_video`.`created_at`, `contents_video`.`updated_at` FROM `contents_video` WHERE `contents_video`.`id` = 2 LIMIT 21; args=(2,); alias=default
+(0.005) SELECT `ai_agent_agentrole`.`id`, `ai_agent_agentrole`.`name`, `ai_agent_agentrole`.`description` FROM `ai_agent_agentrole` WHERE `ai_agent_agentrole`.`id` = 1 LIMIT 21; args=(1,); alias=default
+(0.007) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.013) SELECT `contents_transcript`.`id`, `contents_transcript`.`transcript_text`, `contents_transcript`.`video_id`, `contents_transcript`.`created_at`, `contents_transcript`.`updated_at` FROM `contents_transcript` WHERE `contents_transcript`.`id` = 3 LIMIT 21; args=(3,); alias=default
+(0.004) SELECT `contents_video`.`id`, `contents_video`.`youtube_url`, `contents_video`.`video_id`, `contents_video`.`title`, `contents_video`.`channel_name`, `contents_video`.`original_language`, `contents_video`.`duration`, `contents_video`.`tags`, `contents_video`.`published_at`, `contents_video`.`created_at`, `contents_video`.`updated_at` FROM `contents_video` WHERE `contents_video`.`id` = 2 LIMIT 21; args=(2,); alias=default
+(0.002) SELECT `ai_agent_agentrole`.`id`, `ai_agent_agentrole`.`name`, `ai_agent_agentrole`.`description` FROM `ai_agent_agentrole` WHERE `ai_agent_agentrole`.`id` = 1 LIMIT 21; args=(1,); alias=default
+(0.011) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.010) SELECT `contents_transcript`.`id`, `contents_transcript`.`transcript_text`, `contents_transcript`.`video_id`, `contents_transcript`.`created_at`, `contents_transcript`.`updated_at` FROM `contents_transcript` WHERE `contents_transcript`.`id` = 3 LIMIT 21; args=(3,); alias=default
+(0.001) SELECT `contents_video`.`id`, `contents_video`.`youtube_url`, `contents_video`.`video_id`, `contents_video`.`title`, `contents_video`.`channel_name`, `contents_video`.`original_language`, `contents_video`.`duration`, `contents_video`.`tags`, `contents_video`.`published_at`, `contents_video`.`created_at`, `contents_video`.`updated_at` FROM `contents_video` WHERE `contents_video`.`id` = 2 LIMIT 21; args=(2,); alias=default
+(0.002) SELECT `ai_agent_agentrole`.`id`, `ai_agent_agentrole`.`name`, `ai_agent_agentrole`.`description` FROM `ai_agent_agentrole` WHERE `ai_agent_agentrole`.`id` = 1 LIMIT 21; args=(1,); alias=default
+(0.010) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.006) SELECT `contents_transcript`.`id`, `contents_transcript`.`transcript_text`, `contents_transcript`.`video_id`, `contents_transcript`.`created_at`, `contents_transcript`.`updated_at` FROM `contents_transcript` WHERE `contents_transcript`.`id` = 3 LIMIT 21; args=(3,); alias=default
+(0.003) SELECT `contents_video`.`id`, `contents_video`.`youtube_url`, `contents_video`.`video_id`, `contents_video`.`title`, `contents_video`.`channel_name`, `contents_video`.`original_language`, `contents_video`.`duration`, `contents_video`.`tags`, `contents_video`.`published_at`, `contents_video`.`created_at`, `contents_video`.`updated_at` FROM `contents_video` WHERE `contents_video`.`id` = 2 LIMIT 21; args=(2,); alias=default
+(0.005) SELECT `ai_agent_agentrole`.`id`, `ai_agent_agentrole`.`name`, `ai_agent_agentrole`.`description` FROM `ai_agent_agentrole` WHERE `ai_agent_agentrole`.`id` = 1 LIMIT 21; args=(1,); alias=default
