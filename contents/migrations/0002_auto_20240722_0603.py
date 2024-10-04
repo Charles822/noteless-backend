@@ -10,9 +10,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='video',
-            name='tags',
-            field=models.JSONField(null=True, blank=True),
-        ),
     ]
