@@ -163,7 +163,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'ERROR', # set to error for production
+            'level': 'INFO', # set to error for production
         },
         'debug_toolbar': {
             'handlers': ['console'],
