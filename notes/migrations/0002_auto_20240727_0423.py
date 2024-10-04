@@ -5,7 +5,7 @@ from django.db import migrations, models
 def create_default_list(apps, schema_editor):
     # create an agent role first as it is required to create a list.
     AgentRole = apps.get_model('ai_agent', 'AgentRole')
-    default_agent_role = AgentRole.objects.create(name="Summarize Agent", description="Sumarize this content")
+    default_agent_role = AgentRole.objects.create(description="Sumarize this content")
     List = apps.get_model('lists', 'List')
     default_list = List.objects.create(name='Default List', description='This is the default list')
     Note = apps.get_model('notes', 'Note')
