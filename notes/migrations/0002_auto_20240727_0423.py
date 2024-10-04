@@ -16,6 +16,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('notes', '0001_initial'),
+        ('lists', '0001_initial'),  # Added this line to fix migration
     ]
 
     operations = [
