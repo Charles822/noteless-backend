@@ -7,7 +7,7 @@ def create_default_list(apps, schema_editor):
     AgentRole = apps.get_model('ai_agent', 'AgentRole')
     default_agent_role = AgentRole.objects.create(description="Sumarize this content")
     List = apps.get_model('lists', 'List')
-    default_list = List.objects.create(name='Default List', description='This is the default list')
+    default_list = List.objects.create(name='Default List', description='This is the default list', agent_role_id=1)
     Note = apps.get_model('notes', 'Note')
     for note in Note.objects.all():
         note.note_list = default_list
