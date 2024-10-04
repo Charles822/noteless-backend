@@ -6,8 +6,11 @@ def create_default_list(apps, schema_editor):
     # create an agent role first as it is required to create a list.
     AgentRole = apps.get_model('ai_agent', 'AgentRole')
     default_agent_role = AgentRole.objects.create(description="Sumarize this content")
+    # create a default user first as it is required to create a list.
+    User = apps.get_model('auth', 'User')
+    default_user = User.objects.create(username='defaultuser')
     List = apps.get_model('lists', 'List')
-    default_list = List.objects.create(name='Default List', description='This is the default list', agent_role=default_agent_role)
+    default_list = List.objects.create(name='Default List', description='This is the default list', agent_role=default_agent_role, owner=default_user)
     Note = apps.get_model('notes', 'Note')
     for note in Note.objects.all():
         note.note_list = default_list
