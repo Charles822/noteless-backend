@@ -21,6 +21,7 @@ class Migration(migrations.Migration):
         ('notes', '0001_initial'),
         ('lists', '0001_initial'),
         ('ai_agent', '0001_initial'),  # Added this line to fix migration
+        ('lists', '0002_remove_list_notes_alter_list_agent_role_and_more'),
     ]
 
     operations = [
