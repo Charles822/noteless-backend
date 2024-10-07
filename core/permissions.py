@@ -28,7 +28,9 @@ class IsListOwnerOrAdmin(BasePermission):
         
         # Fetch the list object (handle this with try-except if necessary)
         list_obj = List.objects.get(id=list_id)
-        # print('is he the owner: ', list_obj.owner.id == current_user)
+        print(list_id)
+        print('list obj owner: ', list_obj_owner)
+        print(request.user)
 
         # Check if the user is the owner of the list or an admin
         if list_obj.owner == request.user or request.user.is_staff:
