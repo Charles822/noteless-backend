@@ -12,8 +12,9 @@ DATABASES = {
 
 
 REDIS_URL = os.environ['REDIS_URL']
+print(os.environ)
 
-CELERY_BROKER_URL = REDIS_URL 
-CELERY_RESULT_BACKEND = REDIS_URL
+CELERY_BROKER_URL = 'REDIS_URL'
+CELERY_RESULT_BACKEND = 'REDIS_URL'
 
 # can use the same REDIS url for caching later.
