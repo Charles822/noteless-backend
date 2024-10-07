@@ -11,7 +11,7 @@ DATABASES = {
 }
 
 
-REDIS_URL = os.environ['REDIS_URL']
+REDIS_URL = os.environ.get('REDIS_URL', 'default_redis_url')
 
 CELERY_BROKER_URL = 'REDIS_URL'
 CELERY_RESULT_BACKEND = 'REDIS_URL'
