@@ -61,6 +61,7 @@ class NoteViewSet(ModelViewSet):
     @action(detail=False, methods=['get'], url_path='check_task_status/(?P<task_id>[^/.]+)')
     def check_task_status(self, request, task_id=None):
         task_result = AsyncResult(task_id)
+        print(task_result)
         if task_result.successful():
             return Response({'status': 'SUCCESS', 'note_id': task_result.result['note_id']})
         elif task_result.failed():
