@@ -8,4 +8,13 @@ app = Celery('htfbi_backend')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
+app.conf.update(
+    broker_use_ssl={
+        'ssl_cert_reqs': 'CERT_NONE'
+    },
+    redis_backend_use_ssl={
+        'ssl_cert_reqs': 'CERT_NONE'
+    }
+)
+
 app.autodiscover_tasks()
