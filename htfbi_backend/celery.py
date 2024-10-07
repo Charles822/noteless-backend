@@ -1,5 +1,5 @@
 from __future__ import absolute_import, unicode_literals
-import os
+import os, ssl
 from celery import Celery
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'htfbi_backend.settings.dev')
