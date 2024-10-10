@@ -52,6 +52,7 @@ class NoteViewSet(ModelViewSet):
         task_result = create_note_task.delay(note_data)
         
         # Respond immediately that the task is in progress
+        print("Task sent")
         return Response({
             "message": "Note creation is in progress.",
             "taskId": task_result.id

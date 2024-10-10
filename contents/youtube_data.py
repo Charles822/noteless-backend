@@ -40,10 +40,18 @@ def fetch_video_info(video_id):
 # need to handle the logic to fetch the original language
 
 def validate_transcript_language(transcript_list, video_language):
+    print('strating transcript validation', flush=True)
     for transcript in transcript_list:
+        print(transcript.is_generated, flush=True)
         if not transcript.is_generated:
+            print(video_language, flush=True)
+            if '-' in video_language:
+                print('language code contains a dash', flush=True)
+                print(video_language.split('-')[0], flush=True)
+                return video_language.split('-')[0]
+            print('language code does not contain any dash')
             return video_language
-        print(transcript.language_code)
+        print(transcript.language_code, flush=True)
         return transcript.language_code
 
 def fetch_video_transcript(content_id):
@@ -51,14 +59,25 @@ def fetch_video_transcript(content_id):
     video = Video.objects.filter(id=content_id).get()
     video_yt_id = video.youtube_video_id
     video_language = video.original_language
-    print(video_language)
+    print('here is the video language: ', flush=True)
+    print(video_language, flush=True)
+
 
     # validate available transcript language
+    print('starting transcript process', flush=True)
     transcript_list = YouTubeTranscriptApi.list_transcripts(video_yt_id)
+    print('here is the transcript list', flush=True)
     print(transcript_list)
     validated_language = validate_transcript_language(transcript_list, video_language)
+    manually_created = 'en'
+    print('manually_created', flush=True)
+    print(manually_created, flush=True)
+
 
     # get transcript with validated language
+    print('get transcript with validated lang: ', flush=True)
+    print(validated_language, flush=True)
+
     transcript = YouTubeTranscriptApi.get_transcript(video_yt_id, languages=[validated_language])
 
     return transcript
