@@ -8,10 +8,10 @@ app = Celery('htfbi_backend')
 
 app.conf.update(
     broker_use_ssl={
-        'ssl_cert_reqs': ssl.CERT_OPTIONAL
+        'ssl_cert_reqs': ssl.CERT_REQUIRED
     },
     redis_backend_use_ssl={
-        'ssl_cert_reqs': ssl.CERT_OPTIONAL
+        'ssl_cert_reqs': ssl.CERT_REQUIRED
     }
 )
 
