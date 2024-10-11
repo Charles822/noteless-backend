@@ -6,14 +6,12 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'htfbi_backend.settings.dev')
 
 app = Celery('htfbi_backend')
 
-
-
 app.conf.update(
     broker_use_ssl={
-        'ssl_cert_reqs': ssl.CERT_NONE
+        'ssl_cert_reqs': ssl.CERT_OPTIONAL
     },
     redis_backend_use_ssl={
-        'ssl_cert_reqs': ssl.CERT_NONE
+        'ssl_cert_reqs': ssl.CERT_OPTIONAL
     }
 )
 
