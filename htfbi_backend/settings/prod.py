@@ -10,9 +10,11 @@ DATABASES = {
     'default': dj_database_url.config() # changed to postgres
 }
 
-CORS_ALLOWED_ORIGINS = [
-    'https://noteless-prod-k03g37a3e-charles-fauchets-projects.vercel.app',
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'https://noteless-prod-k03g37a3e-charles-fauchets-projects.vercel.app',
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 REDIS_URL = os.environ['REDIS_URL']
 print(os.environ)
