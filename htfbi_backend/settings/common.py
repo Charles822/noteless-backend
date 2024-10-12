@@ -66,8 +66,6 @@ INTERNAL_IPS = [
     # ...
 ]
 
-# CORS settings (for development; adjust for production)
-CORS_ALLOW_ALL_ORIGINS = True
 
 # REST Framework settings (optional, for customization)
 REST_FRAMEWORK = {
