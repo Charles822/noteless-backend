@@ -23,6 +23,7 @@ drf-nested-routers==0.94.1
 filelock==3.15.4
 flower==2.0.1
 fsspec==2024.6.1
+gevent
 google-api-core==2.19.1
 google-api-python-client==2.137.0
 google-auth==2.32.0
