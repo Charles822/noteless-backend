@@ -77,6 +77,7 @@ def fetch_video_transcript(content_id):
     # get transcript with validated language
     print('get transcript with validated lang: ', flush=True)
     print(validated_language, flush=True)
+    print(video_yt_id, flush=True)
 
     transcript = YouTubeTranscriptApi.get_transcript(video_yt_id, languages=[validated_language])
 
