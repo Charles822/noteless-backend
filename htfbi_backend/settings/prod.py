@@ -7,7 +7,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['noteless-prod-8f2da775e481.herokuapp.com']
 
 DATABASES = {
-    'default': dj_database_url.config() # changed to postgres
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True) # changed to postgres
 }
 
 # CORS_ALLOWED_ORIGINS = [
