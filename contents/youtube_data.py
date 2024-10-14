@@ -67,7 +67,14 @@ def fetch_video_transcript(content_id):
 
     # validate available transcript language
     print('starting transcript process', flush=True)
-    transcript_list = YouTubeTranscriptApi.list_transcripts(video_yt_id)
+    # Use a proxy for transcript API to work in production
+    proxy_username = config('PROXY_USERNAME')
+    proxy_password = config('PROXY_PASSWORD')
+    proxy = { 
+        "https": f"https://{proxy_username}:{proxy_password}@gate.visitxiangtan.com:10001"
+    }
+
+    transcript_list = YouTubeTranscriptApi.list_transcripts(video_yt_id, proxies=proxy)
     print('here is the transcript list', flush=True)
     print(transcript_list)
     validated_language = validate_transcript_language(transcript_list, video_language)
