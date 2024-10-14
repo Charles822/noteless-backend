@@ -88,6 +88,6 @@ def fetch_video_transcript(content_id):
     print(validated_language, flush=True)
 
 
-    transcript = YouTubeTranscriptApi.get_transcript(video_yt_id, , proxies=proxy, languages=[validated_language])
+    transcript = YouTubeTranscriptApi.get_transcript(video_yt_id, languages=[validated_language], proxies=proxy)
 
     return transcript
