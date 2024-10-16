@@ -55,7 +55,17 @@ class ProfileViewSet(ModelViewSet):
         profile = request.user.profile
         serializer = self.get_serializer(profile)
         return Response(serializer.data)
-
+    
+    @action(detail=False, methods=['patch'], url_path='deduct-credit')
+    def deduct_credit(self, request):
+        profile = request.user.profile
+        
+        if profile.credit > 0:
+            profile.credit -= 1
+            profile.save()
+            return Response({'credit': profile.credit}, status=status.HTTP_200_OK)
+        
+        return Response({'error': 'Insufficient credits'}, status=status.HTTP_400_BAD_REQUEST)
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer

@@ -41,7 +41,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Profile
-        fields = ('user', 'first_name', 'last_name', 'email')
+        fields = ('user', 'first_name', 'last_name', 'email', 'credit')
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
