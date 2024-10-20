@@ -51,10 +51,17 @@ class ProfileViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     @action(detail=False, methods=['get'], url_path='my-profile')
-    def get_profile(self, request):
-        profile = request.user.profile
-        serializer = self.get_serializer(profile)
-        return Response(serializer.data)
+    # def get_profile(self, request):
+    #     profile = request.user.profile
+    #     serializer = self.get_serializer(profile)
+    #     return Response(serializer.data)
+    def user_profile(self, request, *args, **kwargs):
+        serializer = ProfileSerializer(data=request.query_params)
+
+        if serializer.is_valid():
+            profile = serializer.user_profile(serializer.validated_data)
+            if profile:
+                return Response({'has_profile': True, 'profile': ProfileSerializer(profile).data}, status=status.HTTP_200_OK)
     
     @action(detail=False, methods=['patch'], url_path='deduct-credit')
     def deduct_credit(self, request):

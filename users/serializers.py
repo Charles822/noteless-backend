@@ -35,6 +35,15 @@ class CustomerSerializer(serializers.ModelSerializer):
         model = Customer
         fields = '__all__'
 
+class GetProfileSerializer(serializers.Serializer):
+    user = serializers.IntegerField(required=True)
+
+    def get_profile(self, validated_data):
+        user_id = validated_data['user']
+
+        profile = Profile.objects.filter(user=user_id).first()
+        
+        return profile
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
@@ -42,6 +51,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('user', 'first_name', 'last_name', 'email', 'credit')
+
+
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
