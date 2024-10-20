@@ -41,9 +41,9 @@ class GetProfileSerializer(serializers.Serializer):
     def get_profile(self, validated_data):
         user_id = validated_data['user']
 
-        profile = Profile.objects.filter(user=user_id).first()
+        user_profile = Profile.objects.filter(user=user_id).first()
         
-        return profile
+        return user_profile
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)

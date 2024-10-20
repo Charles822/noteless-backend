@@ -7,7 +7,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
 from django.conf import settings
 from .models import Customer, Profile
-from .serializers import UserSerializer, ProfileSerializer, CustomerSerializer, MyTokenObtainPairSerializer, UserCreationSerializer
+from .serializers import UserSerializer, ProfileSerializer, GetProfileSerializer, CustomerSerializer, MyTokenObtainPairSerializer, UserCreationSerializer
 from core.permissions import AdminOnly, IsOwnerOrAdmin
 
 
@@ -48,18 +48,18 @@ class CustomerViewSet(ModelViewSet):
 class ProfileViewSet(ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
-    @action(detail=False, methods=['get'], url_path='my-profile')
+    @action(detail=False, methods=['get'], url_path='user-profile')
     # def get_profile(self, request):
     #     profile = request.user.profile
     #     serializer = self.get_serializer(profile)
     #     return Response(serializer.data)
     def user_profile(self, request, *args, **kwargs):
-        serializer = ProfileSerializer(data=request.query_params)
+        serializer = GetProfileSerializer(data=request.query_params)
 
         if serializer.is_valid():
-            profile = serializer.user_profile(serializer.validated_data)
+            profile = serializer.get_profile(serializer.validated_data)
             if profile:
                 return Response({'has_profile': True, 'profile': ProfileSerializer(profile).data}, status=status.HTTP_200_OK)
     
