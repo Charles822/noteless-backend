@@ -7,7 +7,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
 from django.conf import settings
 from .models import Customer, Profile
-from .serializers import UserSerializer, ProfileSerializer, GetProfileSerializer, CustomerSerializer, MyTokenObtainPairSerializer, UserCreationSerializer
+from .serializers import UserSerializer, ProfileSerializer, GetProfileSerializer, DeductCreditSerializer, CustomerSerializer, MyTokenObtainPairSerializer, UserCreationSerializer
 from core.permissions import AdminOnly, IsOwnerOrAdmin
 
 
@@ -50,11 +50,7 @@ class ProfileViewSet(ModelViewSet):
     serializer_class = ProfileSerializer
     # permission_classes = [IsAuthenticated]
 
-    @action(detail=False, methods=['get'], url_path='user-profile')
-    # def get_profile(self, request):
-    #     profile = request.user.profile
-    #     serializer = self.get_serializer(profile)
-    #     return Response(serializer.data)
+    @action(detail=False, methods=['get'], url_path='user_profile')
     def user_profile(self, request, *args, **kwargs):
         serializer = GetProfileSerializer(data=request.query_params)
 
@@ -63,14 +59,16 @@ class ProfileViewSet(ModelViewSet):
             if profile:
                 return Response({'has_profile': True, 'profile': ProfileSerializer(profile).data}, status=status.HTTP_200_OK)
     
-    @action(detail=False, methods=['patch'], url_path='deduct-credit')
+    @action(detail=False, methods=['patch'], url_path='deduct_credit')
     def deduct_credit(self, request):
-        profile = request.user.profile
+        serializer = DeductCreditSerializer(data=request.data)
         
-        if profile.credit > 0:
-            profile.credit -= 1
-            profile.save()
-            return Response({'credit': profile.credit}, status=status.HTTP_200_OK)
+        if serializer.is_valid():
+            updated_profile = serializer.deduct_credit(serializer.validated_data)
+            if updated_profile:
+                return Response({'has_updated_credit': True, 'profile': ProfileSerializer(updated_profile).data}, status=status.HTTP_200_OK)
+            
+        return Response({'has_updated_credit': False}, status=status.HTTP_400_BAD_REQUEST)
         
         return Response({'error': 'Insufficient credits'}, status=status.HTTP_400_BAD_REQUEST)
 

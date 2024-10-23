@@ -30,10 +30,12 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
+
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = '__all__'
+
 
 class GetProfileSerializer(serializers.Serializer):
     user = serializers.IntegerField(required=True)
@@ -45,14 +47,28 @@ class GetProfileSerializer(serializers.Serializer):
         
         return user_profile
 
+class DeductCreditSerializer(serializers.Serializer):
+    user = serializers.IntegerField(required=True)
+
+    def deduct_credit(self, validated_data):
+        user_id = validated_data['user']
+
+        user_profile = Profile.objects.filter(user=user_id).first()
+
+        if user_profile.credit > 0:
+            user_profile.credit -= 1
+            user_profile.save()
+            return user_profile
+        
+        return None
+
+
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
     
     class Meta:
         model = Profile
         fields = ('user', 'first_name', 'last_name', 'email', 'credit')
-
-
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):

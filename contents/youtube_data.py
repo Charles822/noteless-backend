@@ -74,7 +74,10 @@ def fetch_video_transcript(content_id):
         "https": f"https://{proxy_username}:{proxy_password}@gate.visitxiangtan.com:10001"
     }
 
+    # for prod env
     transcript_list = YouTubeTranscriptApi.list_transcripts(video_yt_id, proxies=proxy)
+    # for dev
+    # transcript_list = YouTubeTranscriptApi.list_transcripts(video_yt_id)
     print('here is the transcript list', flush=True)
     print(transcript_list)
     validated_language = validate_transcript_language(transcript_list, video_language)
@@ -87,7 +90,10 @@ def fetch_video_transcript(content_id):
     print('get transcript with validated lang: ', flush=True)
     print(validated_language, flush=True)
 
-
+    # for prod env
     transcript = YouTubeTranscriptApi.get_transcript(video_yt_id, languages=[validated_language], proxies=proxy)
+    #for dev env
+    # transcript = YouTubeTranscriptApi.get_transcript(video_yt_id, languages=[validated_language])
+
 
     return transcript
