@@ -19,6 +19,7 @@ from django.urls import path, include
 from debug_toolbar.toolbar import debug_toolbar_urls
 from rest_framework_nested import routers
 from lists.views import ListViewSet
+# from payments.views import StripeCheckoutViewPack1, StripeCheckoutViewPack2,
 from notes.views import NoteViewSet
 from users.views import UserViewSet, MyTokenObtainPairView
 from interactions.views import CommentViewSet, VoteViewSet
@@ -45,13 +46,14 @@ votes_router.register('votes', VoteViewSet, basename='note-votes')
 urlpatterns = [
     path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/stripe/', include('payments.urls')),
     path('admin/', admin.site.urls),
     path('ai_agent/', include('ai_agent.urls')),
     path('contents/', include('contents.urls')),
-    path('users/', include('users.urls')),
     path('interactions/', include('interactions.urls')),
     path('lists/', include('lists.urls')),
     path('notes/', include('notes.urls')),
+    path('users/', include('users.urls')),
     # Nested URLs
     path('lists/', include(notes_router.urls)),
     path('lists/', include(comments_router.urls)),

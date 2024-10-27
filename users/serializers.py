@@ -62,6 +62,20 @@ class DeductCreditSerializer(serializers.Serializer):
         
         return None
 
+class AddCreditSerializer(serializers.Serializer):
+    user = serializers.IntegerField(required=True)
+    credit = serializers.IntegerField(required=True)
+
+    def add_credit(self, validated_data):
+        user_id = validated_data['user']
+        credit_amount = validated_data['credit']
+
+        user_profile = Profile.objects.filter(user=user_id).first()
+
+        user_profile.credit += credit_amount
+        user_profile.save()
+        return user_profile
+
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)

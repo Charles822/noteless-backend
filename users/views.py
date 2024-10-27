@@ -7,7 +7,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
 from django.conf import settings
 from .models import Customer, Profile
-from .serializers import UserSerializer, ProfileSerializer, GetProfileSerializer, DeductCreditSerializer, CustomerSerializer, MyTokenObtainPairSerializer, UserCreationSerializer
+from .serializers import UserSerializer, ProfileSerializer, GetProfileSerializer, DeductCreditSerializer, AddCreditSerializer, CustomerSerializer, MyTokenObtainPairSerializer, UserCreationSerializer
 from core.permissions import AdminOnly, IsOwnerOrAdmin
 
 
@@ -71,6 +71,19 @@ class ProfileViewSet(ModelViewSet):
         return Response({'has_updated_credit': False}, status=status.HTTP_400_BAD_REQUEST)
         
         return Response({'error': 'Insufficient credits'}, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=False, methods=['patch'], url_path='add_credit')
+    def deduct_credit(self, request):
+        serializer = AddCreditSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            updated_profile = serializer.add_credit(serializer.validated_data)
+            if updated_profile:
+                return Response({'has_updated_credit': True, 'profile': ProfileSerializer(updated_profile).data}, status=status.HTTP_200_OK)
+            
+        return Response({'has_updated_credit': False}, status=status.HTTP_400_BAD_REQUEST)
+        
+        return Response({'error': 'An error occured, please contact support or try again'}, status=status.HTTP_400_BAD_REQUEST)
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
