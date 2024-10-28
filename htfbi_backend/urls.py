@@ -19,7 +19,6 @@ from django.urls import path, include
 from debug_toolbar.toolbar import debug_toolbar_urls
 from rest_framework_nested import routers
 from lists.views import ListViewSet
-# from payments.views import StripeCheckoutViewPack1, StripeCheckoutViewPack2,
 from notes.views import NoteViewSet
 from users.views import UserViewSet, MyTokenObtainPairView
 from interactions.views import CommentViewSet, VoteViewSet

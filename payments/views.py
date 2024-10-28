@@ -20,14 +20,14 @@ class StripeCheckoutViewPack1(APIView):
             checkout_session = stripe.checkout.Session.create(
                 line_items=[
                     {
-                        'price': 'price_1QDfklGOOnj1bmYlYIuoJanV',
+                        'price': 'price_1QEjpjGOOnj1bmYlvEtsTtjb',
                         'quantity': 1,
                     },
                 ],
                 payment_method_types=['card',],
                 mode='payment',
-                success_url=settings.dev.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=settings.dev.SITE_URL+ '?canceled=true',
+                success_url=settings.dev.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}&product_id=prod_R5rTPmubeChRMz',
+                cancel_url=settings.dev.SITE_URL + '?canceled=true',
             )
             return redirect(checkout_session.url)
         
@@ -38,7 +38,7 @@ class StripeCheckoutViewPack1(APIView):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
-# Package 1 
+# Package 2 
 class StripeCheckoutViewPack2(APIView):
     permission_classes = [AllowAny]
     
@@ -47,14 +47,40 @@ class StripeCheckoutViewPack2(APIView):
             checkout_session = stripe.checkout.Session.create(
                 line_items=[
                     {
-                        'price': 'price_1QEPwfGOOnj1bmYlDJCGWFkA',
+                        'price': 'price_1QEjr9GOOnj1bmYlxcqdceez',
                         'quantity': 1,
                     },
                 ],
                 payment_method_types=['card',],
                 mode='payment',
-                success_url=settings.dev.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=settings.dev.SITE_URL+ '?canceled=true',
+                success_url=settings.dev.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}&product_id=prod_R6dDRuy9ZZcwCe', 
+                cancel_url=settings.dev.SITE_URL + '?canceled=true',
+            )
+            return redirect(checkout_session.url)
+        
+        except Exception as e:
+            print(str(e))
+            return Response( 
+                {'error': f'Something went wrong: {str(e)}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+class StripeCheckoutViewPack3(APIView):
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                line_items=[
+                    {
+                        'price': 'price_1QEjs7GOOnj1bmYllJsiRSRJ',
+                        'quantity': 1,
+                    },
+                ],
+                payment_method_types=['card',],
+                mode='payment',
+                success_url=settings.dev.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}&product_id=prod_R6xnZCLfbtRFcg',
+                cancel_url=settings.dev.SITE_URL + '?canceled=true',
             )
             return redirect(checkout_session.url)
         

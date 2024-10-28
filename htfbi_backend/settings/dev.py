@@ -21,4 +21,4 @@ CORS_ALLOW_ALL_ORIGINS = True
 CELERY_BROKER_URL = 'redis://localhost:6379/1'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
-SITE_URL = 'http://localhost:5173/'
+SITE_URL = 'http://localhost:5173/checkout'
