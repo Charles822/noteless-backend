@@ -36,6 +36,7 @@ class NoteViewSet(ModelViewSet):
 
     def get_queryset(self):
         list_slug = self.kwargs.get('list_slug')
+        user_id = self.kwargs.get('user_id')
         queryset = Note.objects.annotate(
             votes_count=Sum('votes__vote')
         ).order_by('-votes_count', '-created_at')
@@ -43,6 +44,10 @@ class NoteViewSet(ModelViewSet):
         if list_slug is not None:
             list_instance = get_object_or_404(List, slug=list_slug)
             return queryset.filter(note_list=list_instance)
+        
+        if user_id is not None:
+            queryset = queryset.filter(owner__id=user_id)
+        
         return queryset
 
 

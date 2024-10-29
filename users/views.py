@@ -29,13 +29,13 @@ class UserViewSet(ModelViewSet):
         return [permission() for permission in get_permissions_based_on_action(self.action)]
 
     @action(detail=False, methods=['post'], url_path='create_user')
-    def add_agent(self, request):
+    def add_user(self, request):
         serializer = UserCreationSerializer(data=request.data)
         
         if serializer.is_valid():
-            new_user = serializer.save()
-            response_serializer = UserSerializer(new_user)
-            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+            new_user = serializer.create(serializer.validated_data)
+            if new_user:
+                return Response(UserSerializer(new_user).data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -74,7 +74,7 @@ class ProfileViewSet(ModelViewSet):
         return Response({'error': 'Insufficient credits'}, status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=False, methods=['patch'], url_path='add_credit')
-    def deduct_credit(self, request):
+    def add_credit(self, request):
         serializer = AddCreditSerializer(data=request.data)
         
         if serializer.is_valid():

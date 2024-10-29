@@ -30,7 +30,7 @@ class NoteCreationSerializer(serializers.Serializer):
         if video.exists():
             video_instance=video.get()
         
-            if Note.objects.filter(video=video_instance).exists():
+            if Note.objects.filter(video=video_instance, note_list=list_id).exists():
                 raise ValidationError({"error": "A note for this content already exists in this list."})
 
         # get the youtube video ID

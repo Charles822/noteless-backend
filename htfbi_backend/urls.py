@@ -20,7 +20,7 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 from rest_framework_nested import routers
 from lists.views import ListViewSet
 from notes.views import NoteViewSet
-from users.views import UserViewSet, MyTokenObtainPairView
+from users.views import UserViewSet, ProfileViewSet, MyTokenObtainPairView
 from interactions.views import CommentViewSet, VoteViewSet
 from rest_framework_simplejwt.views import TokenRefreshView
 
@@ -39,6 +39,10 @@ notes_router.register('notes', NoteViewSet, basename='list-notes')
 # Nested List router for users 
 user_lists_router = routers.NestedDefaultRouter(users_router, 'users', lookup='user')
 user_lists_router.register('lists', ListViewSet, basename='user-lists')
+
+# Nested notes router for users 
+user_notes_router = routers.NestedDefaultRouter(users_router, 'users', lookup='user')
+user_notes_router.register('notes', NoteViewSet, basename='user-notes')
 
 # Nested router for comments under notes
 comments_router = routers.NestedDefaultRouter(notes_router, 'notes', lookup='note')
@@ -66,6 +70,7 @@ urlpatterns = [
     path('lists/', include(comments_router.urls)),
     path('lists/', include(votes_router.urls)),
     path('users/', include(user_lists_router.urls)),
+    path('users/', include(user_notes_router.urls)),
     
 
 ] + debug_toolbar_urls()
