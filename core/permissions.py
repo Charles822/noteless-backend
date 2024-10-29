@@ -1,9 +1,7 @@
+from django.contrib.auth.models import User
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 from rest_framework.exceptions import PermissionDenied
 from lists.models import List
-# from django.contrib.auth import get_user_model
-# import jwt
-# from django.conf import settings
 
 class IsOwnerOrAdmin(BasePermission):
     
@@ -14,6 +12,11 @@ class IsOwnerOrAdmin(BasePermission):
         # so we'll always allow GET, HEAD, or OPTIONS requests.
         if request.method in SAFE_METHODS:
             return True
+
+
+        # If the object is a user, check if it's the same as the request user
+        if isinstance(obj, User):
+            return obj == request.user or request.user.is_staff
 
         # Write permissions are only allowed to the owner of the object or admin.
         return obj.owner == request.user or request.user.is_staff

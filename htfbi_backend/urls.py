@@ -28,9 +28,17 @@ from rest_framework_simplejwt.views import TokenRefreshView
 lists_router = routers.DefaultRouter()
 lists_router.register('lists', ListViewSet, basename='lists')
 
+# Main router for users
+users_router = routers.DefaultRouter()
+users_router.register('users', UserViewSet, basename='users')
+
 # Nested router for notes
 notes_router = routers.NestedDefaultRouter(lists_router, 'lists', lookup='list')
 notes_router.register('notes', NoteViewSet, basename='list-notes')
+
+# Nested List router for users 
+user_lists_router = routers.NestedDefaultRouter(users_router, 'users', lookup='user')
+user_lists_router.register('lists', ListViewSet, basename='user-lists')
 
 # Nested router for comments under notes
 comments_router = routers.NestedDefaultRouter(notes_router, 'notes', lookup='note')
@@ -57,6 +65,7 @@ urlpatterns = [
     path('lists/', include(notes_router.urls)),
     path('lists/', include(comments_router.urls)),
     path('lists/', include(votes_router.urls)),
+    path('users/', include(user_lists_router.urls)),
     
 
 ] + debug_toolbar_urls()

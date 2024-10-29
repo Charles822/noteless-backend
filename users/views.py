@@ -23,6 +23,7 @@ def get_permissions_based_on_action(action):
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    lookup_field = 'id' 
 
     def get_permissions(self):
         return [permission() for permission in get_permissions_based_on_action(self.action)]

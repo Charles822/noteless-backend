@@ -21,12 +21,19 @@ def get_permissions_based_on_action(action):
 
 
 class ListViewSet(ModelViewSet):
-    queryset = List.objects.all()
+    
     serializer_class = ListSerializer
     lookup_field = 'slug'  # Use 'slug' for lookup
 
     def get_permissions(self):
         return [permission() for permission in get_permissions_based_on_action(self.action)]
+
+
+    def get_queryset(self):
+        user_id = self.kwargs.get('user_id')
+        if user_id:
+            return List.objects.filter(owner__id=user_id)
+        return List.objects.all()
 
     @action(detail=False, methods=['post'], url_path='add_list')
     def add_agent(self, request):
