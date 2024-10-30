@@ -1,5 +1,6 @@
 from django.db.models import Sum
 from rest_framework.response import Response
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import action
 from rest_framework import status
@@ -29,6 +30,7 @@ def get_permissions_based_on_action(action):
 class NoteViewSet(ModelViewSet):
     serializer_class = NoteSerializer
     permission_classes = [AllowAny]
+    pagination_class = LimitOffsetPagination
     lookup_field = 'slug'  # Use 'slug' for lookup
 
     def get_permissions(self):
