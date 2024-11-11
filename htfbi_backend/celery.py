@@ -15,7 +15,7 @@ app = Celery('htfbi_backend')
 #     }
 # )
 
-# app.conf.broker_connection_retry_on_startup = True # silence warning: broker connection retries are made during startup
+app.conf.broker_connection_retry_on_startup = True # silence warning: broker connection retries are made during startup
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
