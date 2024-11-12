@@ -21,7 +21,7 @@ def get_permissions_based_on_action(action):
 
     elif action == 'add_note':
         print('He is owner or admin')
-        return [IsListOwnerOrAdmin]
+        return [IsAuthenticated]
         
     # For other actions, only allow the owner or an admin
     else:
