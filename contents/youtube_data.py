@@ -65,18 +65,18 @@ def fetch_video_transcript(content_id):
     #validate the transcript language
 
     # for prod env
-    # transcript_list = YouTubeTranscriptApi.list_transcripts(video_yt_id, proxies=proxy)
+    transcript_list = YouTubeTranscriptApi.list_transcripts(video_yt_id, proxies=proxy)
     # for dev
-    transcript_list = YouTubeTranscriptApi.list_transcripts(video_yt_id)
+    # transcript_list = YouTubeTranscriptApi.list_transcripts(video_yt_id)
     
     validated_language = validate_transcript_language(transcript_list, video_language)
 
     # get transcript with validated languag
 
     # for prod env
-    # transcript = YouTubeTranscriptApi.get_transcript(video_yt_id, languages=[validated_language], proxies=proxy)
+    transcript = YouTubeTranscriptApi.get_transcript(video_yt_id, languages=[validated_language], proxies=proxy)
     #for dev env
-    transcript = YouTubeTranscriptApi.get_transcript(video_yt_id, languages=[validated_language])
+    # transcript = YouTubeTranscriptApi.get_transcript(video_yt_id, languages=[validated_language])
 
 
     return transcript
