@@ -5,11 +5,11 @@ from contents.models import Transcript
 from ai_agent.models import AgentRole
 
 
-# Split the transcript into chunks of 1000 tokens
+# Split the transcript into chunks of 7000 tokens
 def transform_into_chunks(transcript):
     transcript_text = []
     chunk = "" 
-    max_chunk_size = 4000
+    max_chunk_size = 28000
     
     for segment in transcript:
         chunk += segment['text'] + " "
@@ -22,6 +22,8 @@ def transform_into_chunks(transcript):
     if chunk:
         chunk = chunk.strip()
         transcript_text.append(chunk)
+
+    print('number of chunks: ', len(transcript_text), flush=True)
 
     return transcript_text
 
@@ -44,7 +46,7 @@ def agent_one(chunk, agent_role):
             "content": chunk
         }
     ],
-    model="llama-3.1-70b-versatile",
+    model="llama-3.1-8b-instant",
     temperature=0.5,
     max_tokens=100,
     top_p=1,
@@ -59,14 +61,14 @@ def agent_two(agent_one_response):
     messages=[
         {
             "role": "system",
-            "content": "You are a 20 years expert in writting and synthesis. Please translate your response in English language only. Trim redudancies but keep the ideas and structure. At the end of your response, invite people to leave a comment."
+            "content": "You are a 20 years expert in writting and synthesis. Please write in English language only. Trim redudancies but keep the ideas and structure. At the end of your response, invite people to leave a comment."
         },
         {
             "role": "user",
             "content": agent_one_response
         }
     ],
-    model="llama-3.1-70b-versatile",
+    model="llama-3.1-8b-instant",
     temperature=0.5,
     max_tokens=1024,
     top_p=1,
