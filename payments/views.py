@@ -14,6 +14,7 @@ stripe.api_key = config('STRIPE_API_SECRET_KEY')
 # Package 1 
 class StripeCheckoutViewPack1(APIView):
     permission_classes = [AllowAny]
+    #added this to create a new build for heroku
     
     def post(self, request):
         try:
