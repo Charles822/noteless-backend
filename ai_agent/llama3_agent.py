@@ -23,8 +23,6 @@ def transform_into_chunks(transcript):
         chunk = chunk.strip()
         transcript_text.append(chunk)
 
-    print('number of chunks: ', len(transcript_text), flush=True)
-
     return transcript_text
 
 
@@ -39,7 +37,7 @@ def agent_one(chunk, agent_role):
     messages=[
         {
             "role": "system",
-            "content": agent_role + " answer in english even if the text is in a different language."
+            "content": agent_role 
         },
         {
             "role": "user",
@@ -61,11 +59,32 @@ def agent_two(agent_one_response):
     messages=[
         {
             "role": "system",
-            "content": "You are a 20 years expert in writting and synthesis. Please write in English language only. Trim redudancies but keep the ideas and structure. At the end of your response, invite people to leave a comment."
+            "content": "You are a 20 years expert in writting and synthesis. Trim redudancies but keep the ideas and structure. At the end of your response, invite people to leave a comment."
         },
         {
             "role": "user",
             "content": agent_one_response
+        }
+    ],
+    model="llama-3.1-8b-instant",
+    temperature=0.5,
+    max_tokens=1024,
+    top_p=1,
+    stop=None,
+    stream=False,
+)
+
+def translator(agent_two_response):
+
+    return client.chat.completions.create(
+    messages=[
+        {
+            "role": "system",
+            "content": "You have 20 years of experience being a professionnal English translator."
+        },
+        {
+            "role": "user",
+            "content": "English Required. Please translate this text into English, do not write anything else, just revert the translation " + agent_two_response
         }
     ],
     model="llama-3.1-8b-instant",
@@ -104,4 +123,6 @@ def get_agent_response(transcript, agent_role):
     # here we use agent 2 to deliver the final response
     agent_final_response = agent_two(agent_one_response).choices[0].message.content
 
-    return agent_final_response
+    translated_response = translator(agent_final_response).choices[0].message.content
+
+    return translated_response

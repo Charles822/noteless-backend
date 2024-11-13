@@ -32,7 +32,6 @@ class StripeCheckoutViewPack1(APIView):
             return redirect(checkout_session.url)
         
         except Exception as e:
-            print(str(e))
             return Response( 
                 {'error': f'Something went wrong: {str(e)}'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
@@ -59,7 +58,6 @@ class StripeCheckoutViewPack2(APIView):
             return redirect(checkout_session.url)
         
         except Exception as e:
-            print(str(e))
             return Response( 
                 {'error': f'Something went wrong: {str(e)}'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
@@ -85,7 +83,6 @@ class StripeCheckoutViewPack3(APIView):
             return redirect(checkout_session.url)
         
         except Exception as e:
-            print(str(e))
             return Response( 
                 {'error': f'Something went wrong: {str(e)}'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR

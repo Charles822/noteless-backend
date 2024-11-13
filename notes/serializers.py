@@ -41,7 +41,6 @@ class NoteCreationSerializer(serializers.Serializer):
             # check if the video instance already exists
             existing_video_instance = Video.objects.filter(youtube_video_id=youtube_video_id)
             if existing_video_instance:
-                print('yes, video instance exists', flush=True)
                 return existing_video_instance.get()
 
             # if not, create a new one
@@ -76,7 +75,6 @@ class NoteCreationSerializer(serializers.Serializer):
             return new_video_instance
 
         video_instance = get_video_instance(youtube_video_id)
-        print('Video instance exists', flush=True)
 
         # Check if the video exists
         try:
@@ -90,11 +88,9 @@ class NoteCreationSerializer(serializers.Serializer):
             # Check if the transcript instance exists 
             existing_transcript = Transcript.objects.filter(video=video_instance.id)
             if existing_transcript:
-                print('Yes existing transcript exist', existing_transcript, flush=True)
                 return existing_transcript.get()
 
             # if it doesn't exist, create a new transcript
-            print('trying new transcript creation...', flush=True)
             video_transcript = fetch_video_transcript(video_instance.id)
 
             if video_transcript is None: #catch error
@@ -107,7 +103,6 @@ class NoteCreationSerializer(serializers.Serializer):
 
             return new_transcript_instance
 
-        print('trying to get transcript instance', flush=True)
         transcript_instance = get_transcript_instance(video_instance)
 
         # Create the AgentResponse instance
