@@ -22,3 +22,5 @@ CELERY_BROKER_URL = REDIS_URL
 CELERY_RESULT_BACKEND = REDIS_URL
 
 # can use the same REDIS url for caching later.
+
+SITE_URL = 'https://www.noteless.xyz/checkout'

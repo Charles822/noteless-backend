@@ -21,14 +21,14 @@ class StripeCheckoutViewPack1(APIView):
             checkout_session = stripe.checkout.Session.create(
                 line_items=[
                     {
-                        'price': 'price_1QEjpjGOOnj1bmYlvEtsTtjb',
+                        'price': 'price_1QMOXlGOOnj1bmYlIniOfj5s',
                         'quantity': 1,
                     },
                 ],
                 payment_method_types=['card',],
                 mode='payment',
-                success_url=settings.dev.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}&product_id=prod_R5rTPmubeChRMz',
-                cancel_url=settings.dev.SITE_URL + '?canceled=true',
+                success_url=settings.prod.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}&product_id=prod_REsI3HMi7BbLix',
+                cancel_url=settings.prod.SITE_URL + '?canceled=true',
             )
             return redirect(checkout_session.url)
         
@@ -47,14 +47,14 @@ class StripeCheckoutViewPack2(APIView):
             checkout_session = stripe.checkout.Session.create(
                 line_items=[
                     {
-                        'price': 'price_1QEjr9GOOnj1bmYlxcqdceez',
+                        'price': 'price_1QMOXhGOOnj1bmYlBEVN6NJw',
                         'quantity': 1,
                     },
                 ],
                 payment_method_types=['card',],
                 mode='payment',
-                success_url=settings.dev.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}&product_id=prod_R6dDRuy9ZZcwCe', 
-                cancel_url=settings.dev.SITE_URL + '?canceled=true',
+                success_url=settings.prod.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}&product_id=prod_REsISHJPejJWjF', 
+                cancel_url=settings.prod.SITE_URL + '?canceled=true',
             )
             return redirect(checkout_session.url)
         
@@ -72,14 +72,14 @@ class StripeCheckoutViewPack3(APIView):
             checkout_session = stripe.checkout.Session.create(
                 line_items=[
                     {
-                        'price': 'price_1QEjs7GOOnj1bmYllJsiRSRJ',
+                        'price': 'price_1QMOXdGOOnj1bmYlcGBKAKrl',
                         'quantity': 1,
                     },
                 ],
                 payment_method_types=['card',],
                 mode='payment',
-                success_url=settings.dev.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}&product_id=prod_R6xnZCLfbtRFcg',
-                cancel_url=settings.dev.SITE_URL + '?canceled=true',
+                success_url=settings.prod.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}&product_id=prod_REsIAxThFGqYYq',
+                cancel_url=settings.prod.SITE_URL + '?canceled=true',
             )
             return redirect(checkout_session.url)
         
